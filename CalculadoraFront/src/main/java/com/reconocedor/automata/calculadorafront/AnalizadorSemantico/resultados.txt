@@ -1,0 +1,5 @@
+	give the value of 3	T(3)	C 0
+and then
+	give the value of 5	T(5)	C 0
+then	T(3,5)	C 0
+	give sum(the given Integer 3, the given Integer 5)	T(8)	C 0
