@@ -8,6 +8,8 @@ package com.reconocedor.automata.calculadorafront.View;
 import com.reconocedor.automata.calculadorafront.Controllers.Controlador;
 import java.awt.TextArea;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  *
@@ -54,23 +56,26 @@ public class VistaCalculadora extends javax.swing.JFrame {
         jButton24 = new javax.swing.JButton();
         jButton25 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        areaResultados = new javax.swing.JTextArea();
+        areaCell1 = new javax.swing.JTextArea();
         inputsArea = new javax.swing.JTextField();
         jButton22 = new javax.swing.JButton();
         jButton26 = new javax.swing.JButton();
         jButton27 = new javax.swing.JButton();
         jButton28 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
+        btnAnalizar = new javax.swing.JButton();
         outputsArea = new javax.swing.JTextField();
         jScrollPane3 = new javax.swing.JScrollPane();
-        areaResultados1 = new javax.swing.JTextArea();
+        areaTransient = new javax.swing.JTextArea();
         jScrollPane4 = new javax.swing.JScrollPane();
-        areaResultados2 = new javax.swing.JTextArea();
+        areaResultados = new javax.swing.JTextArea();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -347,13 +352,13 @@ public class VistaCalculadora extends javax.swing.JFrame {
         });
         jPanel1.add(jButton25, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 430, 60, 60));
 
-        areaResultados.setEditable(false);
-        areaResultados.setBackground(new java.awt.Color(51, 51, 51));
-        areaResultados.setColumns(20);
-        areaResultados.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        areaResultados.setForeground(new java.awt.Color(0, 204, 51));
-        areaResultados.setRows(5);
-        jScrollPane2.setViewportView(areaResultados);
+        areaCell1.setEditable(false);
+        areaCell1.setBackground(new java.awt.Color(51, 51, 51));
+        areaCell1.setColumns(20);
+        areaCell1.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        areaCell1.setForeground(new java.awt.Color(0, 204, 51));
+        areaCell1.setRows(5);
+        jScrollPane2.setViewportView(areaCell1);
 
         jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1390, 50, 70, 440));
 
@@ -429,18 +434,18 @@ public class VistaCalculadora extends javax.swing.JFrame {
         });
         jPanel1.add(jButton28, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 130, 60, 60));
 
-        jButton9.setBackground(new java.awt.Color(51, 153, 0));
-        jButton9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton9.setForeground(new java.awt.Color(255, 255, 255));
-        jButton9.setText("Analizar");
-        jButton9.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton9.setFocusable(false);
-        jButton9.addActionListener(new java.awt.event.ActionListener() {
+        btnAnalizar.setBackground(new java.awt.Color(51, 153, 0));
+        btnAnalizar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnAnalizar.setForeground(new java.awt.Color(255, 255, 255));
+        btnAnalizar.setText("Analizar");
+        btnAnalizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAnalizar.setFocusable(false);
+        btnAnalizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton9ActionPerformed(evt);
+                btnAnalizarActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 240, 100, 40));
+        jPanel1.add(btnAnalizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 240, 100, 40));
 
         outputsArea.setEditable(false);
         outputsArea.setBackground(new java.awt.Color(51, 51, 51));
@@ -455,27 +460,39 @@ public class VistaCalculadora extends javax.swing.JFrame {
         });
         jPanel1.add(outputsArea, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 240, 40));
 
-        areaResultados1.setEditable(false);
-        areaResultados1.setBackground(new java.awt.Color(51, 51, 51));
-        areaResultados1.setColumns(20);
-        areaResultados1.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        areaResultados1.setForeground(new java.awt.Color(0, 204, 51));
-        areaResultados1.setRows(5);
-        jScrollPane3.setViewportView(areaResultados1);
+        areaTransient.setEditable(false);
+        areaTransient.setBackground(new java.awt.Color(51, 51, 51));
+        areaTransient.setColumns(20);
+        areaTransient.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        areaTransient.setForeground(new java.awt.Color(0, 204, 51));
+        areaTransient.setRows(5);
+        jScrollPane3.setViewportView(areaTransient);
 
         jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1260, 50, 70, 440));
 
-        areaResultados2.setEditable(false);
-        areaResultados2.setBackground(new java.awt.Color(51, 51, 51));
-        areaResultados2.setColumns(20);
-        areaResultados2.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        areaResultados2.setForeground(new java.awt.Color(0, 204, 51));
-        areaResultados2.setRows(5);
-        jScrollPane4.setViewportView(areaResultados2);
+        areaResultados.setEditable(false);
+        areaResultados.setBackground(new java.awt.Color(51, 51, 51));
+        areaResultados.setColumns(20);
+        areaResultados.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        areaResultados.setForeground(new java.awt.Color(0, 204, 51));
+        areaResultados.setRows(5);
+        jScrollPane4.setViewportView(areaResultados);
 
         jPanel1.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 50, 800, 440));
 
+        jLabel1.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel1.setText("Cell1");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1410, 30, 70, -1));
+
+        jLabel2.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel2.setText("Transient");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1260, 30, 70, -1));
+
         jScrollPane1.setViewportView(jPanel1);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 1220, 520));
 
         jPanel2.setBackground(new java.awt.Color(204, 204, 204));
 
@@ -496,7 +513,7 @@ public class VistaCalculadora extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(0, 852, Short.MAX_VALUE)
+                .addGap(0, 1173, Short.MAX_VALUE)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -506,40 +523,18 @@ public class VistaCalculadora extends javax.swing.JFrame {
                 .addComponent(jButton1))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1489, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(146, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 503, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1220, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        System.exit(0);
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         String actual = inputsArea.getText();
-        if(actual.equals("0")){
-         actual="4";   
-        }else{
-         actual+="4";   
+        if (actual.equals("0")) {
+            actual = "4";
+        } else {
+            actual += "4";
         }
         inputsArea.setText(actual);
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -547,17 +542,17 @@ public class VistaCalculadora extends javax.swing.JFrame {
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
         String actual = inputsArea.getText();
-        actual+="+";
+        actual += "+";
         inputsArea.setText(actual);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
         String actual = inputsArea.getText();
-        if(actual.equals("0")){
-         actual="1";   
-        }else{
-         actual+="1";   
+        if (actual.equals("0")) {
+            actual = "1";
+        } else {
+            actual += "1";
         }
         inputsArea.setText(actual);
     }//GEN-LAST:event_jButton6ActionPerformed
@@ -565,7 +560,7 @@ public class VistaCalculadora extends javax.swing.JFrame {
     private void btnIgualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIgualActionPerformed
         // TODO add your handling code here:
         String actual = inputsArea.getText();
-        actual+="=";
+        actual += "=";
         inputsArea.setText(actual);
     }//GEN-LAST:event_btnIgualActionPerformed
 
@@ -573,24 +568,28 @@ public class VistaCalculadora extends javax.swing.JFrame {
         // TODO add your handling code here:
         inputsArea.setText("0");
         outputsArea.setText("");
+        areaResultados.setText("");
+        areaTransient.setText("");
+        areaCell1.setText("");
+        btnAnalizar.setEnabled(true);
     }//GEN-LAST:event_jButton14ActionPerformed
 
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
         // TODO add your handling code here:
         String actual = inputsArea.getText();
-        if(actual.length()>0){
-             inputsArea.setText(actual.substring(0, actual.length()-1));
+        if (actual.length() > 0) {
+            inputsArea.setText(actual.substring(0, actual.length() - 1));
         }
-       
+
     }//GEN-LAST:event_jButton16ActionPerformed
 
     private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
         // TODO add your handling code here:
         String actual = inputsArea.getText();
-        if(actual.equals("0")){
-         actual="7";   
-        }else{
-         actual+="7";   
+        if (actual.equals("0")) {
+            actual = "7";
+        } else {
+            actual += "7";
         }
         inputsArea.setText(actual);
     }//GEN-LAST:event_jButton18ActionPerformed
@@ -598,24 +597,24 @@ public class VistaCalculadora extends javax.swing.JFrame {
     private void jButton21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton21ActionPerformed
         // TODO add your handling code here:
         String actual = inputsArea.getText();
-        actual+="-";
+        actual += "-";
         inputsArea.setText(actual);
     }//GEN-LAST:event_jButton21ActionPerformed
 
     private void jButton25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton25ActionPerformed
         // TODO add your handling code here:
         String actual = inputsArea.getText();
-        actual+="+/-";
+        actual += "+/-";
         inputsArea.setText(actual);
     }//GEN-LAST:event_jButton25ActionPerformed
 
     private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
         // TODO add your handling code here:
         String actual = inputsArea.getText();
-        if(actual.equals("0")){
-         actual="8";   
-        }else{
-         actual+="8";   
+        if (actual.equals("0")) {
+            actual = "8";
+        } else {
+            actual += "8";
         }
         inputsArea.setText(actual);
     }//GEN-LAST:event_jButton19ActionPerformed
@@ -623,10 +622,10 @@ public class VistaCalculadora extends javax.swing.JFrame {
     private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
         // TODO add your handling code here:
         String actual = inputsArea.getText();
-        if(actual.equals("0")){
-         actual="9";   
-        }else{
-         actual+="9";   
+        if (actual.equals("0")) {
+            actual = "9";
+        } else {
+            actual += "9";
         }
         inputsArea.setText(actual);
     }//GEN-LAST:event_jButton20ActionPerformed
@@ -634,10 +633,10 @@ public class VistaCalculadora extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         String actual = inputsArea.getText();
-        if(actual.equals("0")){
-         actual="5";   
-        }else{
-         actual+="5";   
+        if (actual.equals("0")) {
+            actual = "5";
+        } else {
+            actual += "5";
         }
         inputsArea.setText(actual);
     }//GEN-LAST:event_jButton3ActionPerformed
@@ -645,10 +644,10 @@ public class VistaCalculadora extends javax.swing.JFrame {
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
         String actual = inputsArea.getText();
-        if(actual.equals("0")){
-         actual="6";   
-        }else{
-         actual+="6";   
+        if (actual.equals("0")) {
+            actual = "6";
+        } else {
+            actual += "6";
         }
         inputsArea.setText(actual);
     }//GEN-LAST:event_jButton5ActionPerformed
@@ -656,10 +655,10 @@ public class VistaCalculadora extends javax.swing.JFrame {
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:
         String actual = inputsArea.getText();
-        if(actual.equals("0")){
-         actual="2";   
-        }else{
-         actual+="2";   
+        if (actual.equals("0")) {
+            actual = "2";
+        } else {
+            actual += "2";
         }
         inputsArea.setText(actual);
     }//GEN-LAST:event_jButton7ActionPerformed
@@ -667,10 +666,10 @@ public class VistaCalculadora extends javax.swing.JFrame {
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         // TODO add your handling code here:
         String actual = inputsArea.getText();
-        if(actual.equals("0")){
-         actual="3";   
-        }else{
-         actual+="3";   
+        if (actual.equals("0")) {
+            actual = "3";
+        } else {
+            actual += "3";
         }
         inputsArea.setText(actual);
     }//GEN-LAST:event_jButton8ActionPerformed
@@ -678,10 +677,10 @@ public class VistaCalculadora extends javax.swing.JFrame {
     private void jButton24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton24ActionPerformed
         // TODO add your handling code here:
         String actual = inputsArea.getText();
-        if(actual.equals("0")){
-         actual="0";   
-        }else{
-         actual+="0";   
+        if (actual.equals("0")) {
+            actual = "0";
+        } else {
+            actual += "0";
         }
         inputsArea.setText(actual);
     }//GEN-LAST:event_jButton24ActionPerformed
@@ -689,21 +688,21 @@ public class VistaCalculadora extends javax.swing.JFrame {
     private void jButton23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton23ActionPerformed
         // TODO add your handling code here:
         String actual = inputsArea.getText();
-        actual+=".";
+        actual += ".";
         inputsArea.setText(actual);
     }//GEN-LAST:event_jButton23ActionPerformed
 
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
         // TODO add your handling code here:
         String actual = inputsArea.getText();
-        actual+="/";
+        actual += "/";
         inputsArea.setText(actual);
     }//GEN-LAST:event_jButton15ActionPerformed
 
     private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
         // TODO add your handling code here:
         String actual = inputsArea.getText();
-        actual+="x";
+        actual += "x";
         inputsArea.setText(actual);
     }//GEN-LAST:event_jButton17ActionPerformed
 
@@ -718,29 +717,59 @@ public class VistaCalculadora extends javax.swing.JFrame {
     private void jButton27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton27ActionPerformed
         // TODO add your handling code here:
         String actual = inputsArea.getText();
-        actual+="M+";
+        actual += "M+";
         inputsArea.setText(actual);
     }//GEN-LAST:event_jButton27ActionPerformed
 
     private void jButton28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton28ActionPerformed
         // TODO add your handling code here:
         String actual = inputsArea.getText();
-        actual+="MR";
+        actual += "MR";
         inputsArea.setText(actual);
     }//GEN-LAST:event_jButton28ActionPerformed
 
-    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+    private void btnAnalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnalizarActionPerformed
         // TODO add your handling code here:
         areaResultados.setText("");
-        outputsArea.setText(inputsArea.getText()); 
+        areaTransient.setText("");
+        areaCell1.setText("");
+        outputsArea.setText(inputsArea.getText());
         inputsArea.setText("");
-        System.out.println("codigo:"+outputsArea.getText());
+        System.out.println("codigo:" + outputsArea.getText());
         List<String> respuesta = con.analizarOperacion(outputsArea.getText());
-        for(String res:respuesta){
-            System.out.println("Respuesta: "+res+"\n");
-            areaResultados.append(res+"\n");
+        areaResultados.append("meaning[[" + outputsArea.getText() + "]]" + "\n" + "\tstore 0 in cell1\n"
+                + "and then\n"
+                + "\tperform [["+ outputsArea.getText() + "]]" + "\n"
+                + "evaluate[[" + outputsArea.getText() + "]]" + "\n" );
+        areaTransient.append("\n\n\n\n\n");
+        areaCell1.append("\n 0\n\n\n\n");
+        for (String cadena : respuesta) {
+            String res = "";
+            Pattern pat0 = Pattern.compile(".*T");
+            Matcher mat0 = pat0.matcher(cadena);
+            if (mat0.find()) {
+                res = mat0.group(0);
+                areaResultados.append(res.substring(0, res.length() - 1) + "\n");
+                Pattern pat = Pattern.compile("T[(].*[)]");
+                Matcher mat = pat.matcher(cadena);
+                if (mat.find()) {
+                    res = mat.group(0);
+                    areaTransient.append(res.substring(1) + "\n");
+                }
+                Pattern pat2 = Pattern.compile("C.*");
+                Matcher mat2 = pat2.matcher(cadena);
+                if (mat2.find()) {
+                    res = mat2.group(0);
+                    areaCell1.append(res.substring(1) + "\n");
+                }
+            } else {
+                areaResultados.append(cadena + "\n");
+                areaTransient.append("\n");
+                areaCell1.append("\n");
+            }
         }
-    }//GEN-LAST:event_jButton9ActionPerformed
+        btnAnalizar.setEnabled(false);
+    }//GEN-LAST:event_btnAnalizarActionPerformed
 
     private void inputsAreaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputsAreaActionPerformed
         // TODO add your handling code here:
@@ -749,6 +778,11 @@ public class VistaCalculadora extends javax.swing.JFrame {
     private void outputsAreaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_outputsAreaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_outputsAreaActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -786,9 +820,10 @@ public class VistaCalculadora extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextArea areaCell1;
     private javax.swing.JTextArea areaResultados;
-    private javax.swing.JTextArea areaResultados1;
-    private javax.swing.JTextArea areaResultados2;
+    private javax.swing.JTextArea areaTransient;
+    private javax.swing.JButton btnAnalizar;
     private javax.swing.JButton btnIgual;
     private javax.swing.JTextField inputsArea;
     private javax.swing.JButton jButton1;
@@ -814,7 +849,8 @@ public class VistaCalculadora extends javax.swing.JFrame {
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;

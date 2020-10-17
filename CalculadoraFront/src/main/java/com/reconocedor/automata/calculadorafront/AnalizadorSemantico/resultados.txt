@@ -1,5 +1,33 @@
-	give the value of 3	T(3)	C 0
+	give the value of 12	T(12)	C 0
 and then
 	give the value of 5	T(5)	C 0
-then	T(3,5)	C 0
-	give sum(the given Integer 3, the given Integer 5)	T(8)	C 0
+then
+	give difference(0, the given Integer 5)	T(-5)	C 0
+then	T(12,-5)	C 0
+	give sum(the given Integer 12, the given Integer -5)	T(7)	C 0
+and then
+	give the value of 2	T(2)	C 0
+then	T(7,2)	C 0
+	give product(the given Integer 7, the given Integer 2)	T(14)	C 0
+then
+	store sum(the given stored in cell1, the given Integer 14) in cell1	T()	C 14
+and
+	regive	T(14)	C 14
+and then
+	give the value of 123	T(123)	C 14
+then
+	store sum(the given stored in cell1, the given Integer 123) in cell1	T()	C 137
+and
+	regive	T(123)	C 137
+and then
+	give Integer stored in cell1	T(137)	C 137
+then
+	give difference(0, the given Integer 137)	T(-137)	C 137
+and then
+	give the value of 25	T(25)	C 137
+then	T(-137,25)	C 137
+	give difference(the given Integer -137, the given Integer 25)	T(-162)	C 137
+and then
+	give Integer stored in cell1	T(137)	C 137
+then	T(-162,137)	C 137
+	give sum(the given Integer -162, the given Integer 137)	T(-25)	C 137

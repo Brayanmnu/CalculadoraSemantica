@@ -4,17 +4,13 @@
 #include "Parser.h"
 FILE *f;
 %}
-
 %option outfile = "Scanner.c"
 %option noyywrap
 %option yylineno
-
 IGNORA	" "|\t|\n
 LETRA	[A-Za-z]
 DIGITO	[0-9]
-
 %%
-
 {IGNORA}*		{;}
 {DIGITO}+		{yylval.nombre = strdup(yytext);return(NUMERAL);}
 "M+"			{yylval.nombre = strdup(yytext);return(MP);}
@@ -25,5 +21,4 @@ DIGITO	[0-9]
 "-"             {yylval.nombre = strdup(yytext);return(RESTA);}
 "x"             {yylval.nombre = strdup(yytext);return(MULT);}
 .				{fprintf(f,"Error lexico en la linea: %d.\n",yylineno);}
-
 %%
